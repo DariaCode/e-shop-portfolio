@@ -1,44 +1,59 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-// https://rxjs-dev.firebaseapp.com/api/operators/map
-import { map } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Item } from '../models/item';
+import { map } from 'rxjs/operators';
 
-// To define a class as a service in Angular, use the @Injectable() decorator 
-// to provide the metadata that allows Angular to inject it into
-// a component as a dependency.
 @Injectable({
-  // When you provide the service at the root level, Angular creates a single, 
-  // shared instance of HeroService and injects it into 
-  // any class that asks for it.
   providedIn: 'root'
 })
 export class ItemService {
+  private itemsSubject = new BehaviorSubject<Item[]>([]);
+  items$: Observable<Item[]> = this.itemsSubject.asObservable();
 
-  constructor(private firebase: AngularFireDatabase) { }
-
-  // Methods:
-  getAll() { 
-    return this.firebase.list('items').snapshotChanges()
-    .pipe(map(action => action
-      .map(a => ({key: a.payload.key, ...(a.payload.val() as Item)})
-      )));
+  constructor() {
+    const savedItems = localStorage.getItem('items');
+    if (savedItems) {
+      this.itemsSubject.next(JSON.parse(savedItems));
+    }
   }
 
-  create(item) {
-    return this.firebase.list('/items').push(item);
+  getAll(): Observable<Item[]> {
+    return this.items$;
   }
 
-  get(itemId) {
-    return this.firebase.object('/items/' + itemId);
+  create(item: any) {
+    const currentItems = this.itemsSubject.getValue();
+    const newItem = { ...item, key: Date.now().toString() };
+    const updatedItems = [...currentItems, newItem];
+    this.saveItems(updatedItems);
+    return of(newItem);
   }
 
-  update(itemId, item) {
-    return this.firebase.object('/items/' + itemId).update(item);
+  get(itemId: string): Observable<Item> {
+    return this.items$.pipe(
+      map(items => items.find(i => i.key === itemId))
+    );
   }
 
-  delete(itemId) {
-    return this.firebase.object('/items/' + itemId).remove();
+  update(itemId: string, item: any) {
+    const currentItems = this.itemsSubject.getValue();
+    const index = currentItems.findIndex(i => i.key === itemId);
+    if (index !== -1) {
+      currentItems[index] = { ...item, key: itemId };
+      this.saveItems(currentItems);
+    }
+    return of(currentItems[index]);
   }
 
+  delete(itemId: string) {
+    const currentItems = this.itemsSubject.getValue();
+    const updatedItems = currentItems.filter(i => i.key !== itemId);
+    this.saveItems(updatedItems);
+    return of(true);
+  }
+
+  private saveItems(items: Item[]) {
+    localStorage.setItem('items', JSON.stringify(items));
+    this.itemsSubject.next(items);
+  }
 }

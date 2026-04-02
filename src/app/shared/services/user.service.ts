@@ -1,24 +1,40 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import * as firebase from 'firebase';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { AppUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private usersSubject = new BehaviorSubject<AppUser[]>([]);
+  users$: Observable<AppUser[]> = this.usersSubject.asObservable();
 
-  constructor(private db: AngularFireDatabase) { }
-
-  add(user: firebase.User) {
-    this.db.object('/users/' + user.uid).update({
-      name: user.displayName,
-      email: user.email
-    })
+  constructor() {
+    const savedUsers = localStorage.getItem('users');
+    if (savedUsers) {
+      this.usersSubject.next(JSON.parse(savedUsers));
+    }
   }
 
-  get(uid: string): AngularFireObject<AppUser> {
-    return this.db.object('/users/' + uid);
+  save(user: any) {
+    const currentUsers = this.usersSubject.getValue();
+    const index = currentUsers.findIndex(u => u.email === user.email);
+    if (index !== -1) {
+      currentUsers[index] = user;
+    } else {
+      currentUsers.push(user);
+    }
+    this.saveUsersToStorage(currentUsers);
   }
 
+  get(uid: string): Observable<any> {
+    const currentUsers = this.usersSubject.getValue();
+    const user = currentUsers.find(u => (u as any).uid === uid);
+    return of({ valueChanges: () => of(user) });
+  }
+
+  private saveUsersToStorage(users: AppUser[]) {
+    localStorage.setItem('users', JSON.stringify(users));
+    this.usersSubject.next(users);
+  }
 }

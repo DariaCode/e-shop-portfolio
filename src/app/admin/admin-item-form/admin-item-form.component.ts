@@ -32,7 +32,7 @@ export class AdminItemFormComponent implements OnInit {
     this.categories$ = filterService.getAll();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.itemService.get(this.id).valueChanges().pipe(take(1))
+      this.itemService.get(this.id).pipe(take(1))
       .subscribe(i => this.item = i);
     }
     console.log('admin-item-form:', this.categories$)

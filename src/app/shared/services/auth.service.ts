@@ -1,48 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
-// import 'rxjs/add/observable/of';
-
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppUser } from '../models/user';
-import { UserService  } from '../services/user.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
- // $ sign https://angular.io/guide/rx-library#naming-conventions-for-observables
-  user$: Observable<firebase.User>;
+  private userSubject = new BehaviorSubject<any>(null);
+  user$: Observable<any> = this.userSubject.asObservable();
 
   constructor(
-    private userService: UserService,
-    private afAuth: AngularFireAuth,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.user$ = afAuth.authState;
-   }
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      this.userSubject.next(JSON.parse(savedUser));
+    }
+  }
 
-   get appUser$(): Observable<AppUser> {
-     return this.user$.pipe(switchMap(user => {
-       if(user) return this.userService.get(user.uid).valueChanges();
-       return of(null);
-     }))
-   }
+  get appUser$(): Observable<AppUser> {
+    return this.user$ as Observable<AppUser>;
+  }
 
-   login() {
-     // TODO read about googleAuth
-     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-     localStorage.setItem('returnUrl', returnUrl);
+  login() {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
 
-     this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-   }
+    // Mock login: always logs in as an admin for development purposes
+    const mockUser: AppUser = {
+      name: 'Admin User',
+      email: 'admin@example.com',
+      isAdmin: true
+    };
 
-   logout() {
-     this.afAuth.signOut();
-   }
+    localStorage.setItem('user', JSON.stringify(mockUser));
+    this.userSubject.next(mockUser);
+    
+    this.router.navigateByUrl(returnUrl);
+  }
 
+  logout() {
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate(['/']);
+  }
 }

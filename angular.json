@@ -123,6 +123,9 @@
           }
         }
       }
-    }},
-  "defaultProject": "e-shop"
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
 }

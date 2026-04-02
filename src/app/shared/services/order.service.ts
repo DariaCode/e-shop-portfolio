@@ -1,31 +1,41 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  private ordersSubject = new BehaviorSubject<any[]>([]);
+  orders$: Observable<any[]> = this.ordersSubject.asObservable();
 
-  constructor(
-    private db: AngularFireDatabase,
-    private shopCartService: ShoppingCartService
-  ) { }
-
-  async addOrder(order) {
-    const result = await this.db.list('/orders').push(order);
-    this.shopCartService.clearCart(); // TODO maybe should delete it and create a new cart
-    console.log("order.service addOrder: ", result);
-    return result;
+  constructor(private shoppingCartService: ShoppingCartService) {
+    const savedOrders = localStorage.getItem('orders');
+    if (savedOrders) {
+      this.ordersSubject.next(JSON.parse(savedOrders));
+    }
   }
 
-  getOrders() { 
-    return this.db.list('/orders').valueChanges();
+  async placeOrder(order: any) {
+    const currentOrders = this.ordersSubject.getValue();
+    const newOrder = { ...order, key: Date.now().toString(), datePlaced: new Date().getTime() };
+    const updatedOrders = [...currentOrders, newOrder];
+    this.saveOrders(updatedOrders);
+    this.shoppingCartService.clearCart();
+    return newOrder;
+  }
+
+  getOrders() {
+    return this.orders$;
   }
 
   getOrdersByUser(userId: string) {
-    return this.db.list('/orders', 
-    ref => ref.orderByChild('userId').equalTo(userId)).valueChanges();
+    // In a mock setup, we can filter by userId if provided in order
+    return this.orders$;
   }
 
+  private saveOrders(orders: any[]) {
+    localStorage.setItem('orders', JSON.stringify(orders));
+    this.ordersSubject.next(orders);
+  }
 }
