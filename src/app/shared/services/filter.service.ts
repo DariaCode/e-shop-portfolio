@@ -6,11 +6,12 @@ import { Observable, of } from 'rxjs';
 })
 export class FilterService {
   private defaultCategories = [
-    { key: 'bread', name: 'Bread' },
-    { key: 'dairy', name: 'Dairy' },
-    { key: 'fruits', name: 'Fruits' },
-    { key: 'seasonings', name: 'Seasonings' },
-    { key: 'vegetables', name: 'Vegetables' }
+    { key: 'BeanHead', name: 'Bean Head' },
+    { key: 'KickingHorse', name: 'Kicking Horse' },
+    { key: 'Lavazza', name: 'Lavazza' },
+    { key: 'Melitta', name: 'Melitta' },
+    { key: 'Starbucks', name: 'Starbucks' },
+    { key: 'TimHortons', name: 'Tim Hortons' }
   ];
 
   constructor() { }
