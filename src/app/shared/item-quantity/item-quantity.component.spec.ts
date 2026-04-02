@@ -51,14 +51,14 @@ describe('ItemQuantityComponent', () => {
   });
 
   it('should call addToCart method of cart service when add button is clicked', () => {
-    const addToCartButton = fixture.nativeElement.querySelector('.add-btn'); 
+    const addToCartButton = fixture.nativeElement.querySelector('.add-btn');
     addToCartButton.click();
 
     expect(mockCartService.addToCart).toHaveBeenCalledWith(mockItem);
   });
 
   it('should call removeFromCart method of cart service when remove button is clicked', () => {
-    const removeFromCartButton = fixture.nativeElement.querySelector('.remove-btn'); 
+    const removeFromCartButton = fixture.nativeElement.querySelector('.remove-btn');
     removeFromCartButton.click();
 
     expect(mockCartService.removeFromCart).toHaveBeenCalledWith(mockItem);

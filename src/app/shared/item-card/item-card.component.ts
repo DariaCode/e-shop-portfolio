@@ -13,10 +13,10 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 
 export class ItemCardComponent {
-  // Decorator that marks a class field as an input property 
+  // Decorator that marks a class field as an input property
   // and supplies configuration metadata.
-  // https://angular.io/api/core/Input 
-  @Input('item') item: Item;
+  // https://angular.io/api/core/Input
+  @Input() item: Item;
   @Input('show-actions') showActions = true;
   @Input('shopping-cart') shoppingCart: ShoppingCart;
 

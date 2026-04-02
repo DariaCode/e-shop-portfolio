@@ -25,7 +25,7 @@ describe('ItemCardComponent', () => {
     fixture = TestBed.createComponent(ItemCardComponent);
     component = fixture.componentInstance;
     item = { key: '1', title: 'Test Item', price: 10, category: 'test category', imageUrl: 'https://example.com/image.jpg' };
-    shoppingCart = new ShoppingCart({ '1': { item, quantity: 2, totalPrice: 20 } });
+    shoppingCart = new ShoppingCart({ 1: { item, quantity: 2, totalPrice: 20 } });
     component.item = item;
     component.shoppingCart = shoppingCart;
     fixture.detectChanges();
@@ -37,7 +37,7 @@ describe('ItemCardComponent', () => {
 
   it('should show item title', () => {
     const titleElement: HTMLElement = fixture.nativeElement.querySelector('.item-card-title');
-    
+
     expect(titleElement.textContent).toContain(item.title);
   });
 
@@ -55,7 +55,7 @@ describe('ItemCardComponent', () => {
 
   it('should not show add to cart button if item already in cart', () => {
     const addToCartButton: HTMLButtonElement = fixture.nativeElement.querySelector('.btn');
-    
+
     expect(addToCartButton).toBeFalsy();
   });
 

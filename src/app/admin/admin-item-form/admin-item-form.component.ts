@@ -28,14 +28,14 @@ export class AdminItemFormComponent implements OnInit {
     private route: ActivatedRoute,
     private itemService: ItemService,
     private filterService: FilterService
-  ) { 
+  ) {
     this.categories$ = filterService.getAll();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.itemService.get(this.id).pipe(take(1))
       .subscribe(i => this.item = i);
     }
-    console.log('admin-item-form:', this.categories$)
+    console.log('admin-item-form:', this.categories$);
   }
 
   save(item) {
@@ -49,7 +49,7 @@ export class AdminItemFormComponent implements OnInit {
   }
 
   delete() {
-    if (!confirm('Are you sure you want to delete this product?')) return;
+    if (!confirm('Are you sure you want to delete this product?')) {return;}
     this.itemService.delete(this.id);
     this.router.navigate(['/admin/items']);
   }

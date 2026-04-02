@@ -20,7 +20,7 @@ import { OrderService } from './services/order.service';
     ItemQuantityComponent
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     DataTableModule
   ],

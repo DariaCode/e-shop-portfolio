@@ -33,21 +33,21 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.subscription = (await this.shoppingCartService.getCart())
       .subscribe(cart => {
-        this.cart = cart as ShoppingCart; 
+        this.cart = cart as ShoppingCart;
       });
 
     // https://rxjs-dev.firebaseapp.com/api/operators/switchMap
-    this.itemService.getAll()  
+    this.itemService.getAll()
       .pipe(switchMap(items => {
         this.items = items;
-        // queryParamMap - An Observable that contains a map of the 
-        // query parameters available to all routes. The map supports retrieving 
+        // queryParamMap - An Observable that contains a map of the
+        // query parameters available to all routes. The map supports retrieving
         // single and multiple values from the query parameter.
         return this.route.queryParamMap;
       }))
       .subscribe(params => {
         this.category = params.get('category');
-        this.filteredItems = (this.category) ? 
+        this.filteredItems = (this.category) ?
           this.items.filter(i => i.category === this.category) :
           this.items;
       });

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-// My modules: 
+// My modules:
 import { SharedModule } from '../shared/shared.module';
 // My components:
 import { ItemsListComponent } from './items-list/items-list.component';
@@ -14,7 +14,7 @@ import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.co
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
 import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
 import { HomeComponent } from './home/home.component';
-// My services: 
+// My services:
 import { AuthGuardService } from '../shared/services/auth-guard.service';
 
 @NgModule({

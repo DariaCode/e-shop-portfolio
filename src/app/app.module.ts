@@ -11,7 +11,7 @@ import { ItemsListComponent } from './shop/items-list/items-list.component';
 import { LoginButtonComponent } from './core/login-button/login-button.component';
 import { HomeComponent } from './shop/home/home.component';
 // https://ng-bootstrap.github.io/#/home
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // My modules:
 import { CoreModule } from './core/core.module';
 import { SharedModule }  from './shared/shared.module';

@@ -7,12 +7,10 @@ import { By } from '@angular/platform-browser';
 
 // Define a mock FilterService that returns an observable of categories
 const mockFilterService = {
-  getAll: () => {
-    return of([
+  getAll: () => of([
       { key: 'category1', payload: { val: () => ({ name: 'Category 1' }) } },
       { key: 'category2', payload: { val: () => ({ name: 'Category 2' }) } },
-    ]);
-  }
+    ])
 };
 
 describe('ItemsFilterComponent', () => {

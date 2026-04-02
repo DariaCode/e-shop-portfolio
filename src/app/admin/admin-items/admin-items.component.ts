@@ -19,13 +19,13 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
 
   constructor(
     private itemService: ItemService
-  ) { 
+  ) {
     this.subscription = this.itemService.getAll()
       .subscribe(items => {
         const temp: any[] = items;
         this.items = temp;
         this.initializeTable(this.items);
-        console.log("admin-items: ",this.items);
+        console.log('admin-items: ',this.items);
       });
   }
 
@@ -34,19 +34,19 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
     this.tableResource.query({ offset: 0 })
       .then(items => this.entries = items);
     this.tableResource.count()
-      .then(count => this.itemCount = count);  
+      .then(count => this.itemCount = count);
   }
 
   filter(query: string) {
     const filteredItems = (query) ?
-      this.items.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) : 
+      this.items.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
       this.items;
     this.initializeTable(filteredItems);
   }
 
   reloadItems(params) {
     if (!this.tableResource)
-      return;
+      {return;}
 
     this.tableResource.query(params)
       .then(items => this.entries = items);

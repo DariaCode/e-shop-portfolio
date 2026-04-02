@@ -45,7 +45,7 @@ describe('FilterService', () => {
         { provide: AngularFireDatabase, useValue: firebaseMock },
       ],
     });
-    service = TestBed.inject(FilterService); 
+    service = TestBed.inject(FilterService);
   });
 
   it('should be created', () => {
@@ -54,15 +54,15 @@ describe('FilterService', () => {
 
   it('should call firebase.list and returns an array of length 3', () => {
     service.getAll().subscribe(data =>{
-      expect(data.length).toEqual(3);    
+      expect(data.length).toEqual(3);
     });
   });
 
   it('should call getAll method and matches keys with expected values', () => {
     service.getAll().subscribe(data =>{
-      expect(data[0].payload.key).toBe("Bean Head");
-      expect(data[1].payload.key).toBe("Kicking Horse");  
-      expect(data[2].payload.key).toBe("Starbucks");    
+      expect(data[0].payload.key).toBe('Bean Head');
+      expect(data[1].payload.key).toBe('Kicking Horse');
+      expect(data[2].payload.key).toBe('Starbucks');
     });
   });
 });

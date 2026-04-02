@@ -10,8 +10,8 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class ItemQuantityComponent {
 
-  @Input('item') item: Item;
-  @Input('shopping-cart') shoppingCart: ShoppingCart; 
+  @Input() item: Item;
+  @Input('shopping-cart') shoppingCart: ShoppingCart;
 
   constructor(private cartService: ShoppingCartService) { }
 
@@ -22,11 +22,11 @@ export class ItemQuantityComponent {
   removeFromCart() {
     this.cartService.removeFromCart(this.item);
   }
-  
+
   getQuantity() {
     if (!this.shoppingCart) { return 0; }
     const itemQ = this.shoppingCart.itemsMap[this.item.key];
     return itemQ ? itemQ.quantity : 0;
  }
- 
+
 }

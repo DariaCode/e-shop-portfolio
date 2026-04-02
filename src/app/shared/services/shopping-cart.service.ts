@@ -60,7 +60,7 @@ export class ShoppingCartService {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       const itemsMap = JSON.parse(savedCart);
-      for (let key in itemsMap) {
+      for (const key in itemsMap) {
         const itemData = itemsMap[key];
         itemsMap[key] = new ShoppingCartItem(itemData.item, itemData.quantity);
       }

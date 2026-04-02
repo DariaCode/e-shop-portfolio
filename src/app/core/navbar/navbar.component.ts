@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     private shoppingCartService: ShoppingCartService) { }
 
   async ngOnInit() {
-    this.auth.appUser$.subscribe(appUser => this.appUser = appUser); 
+    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
 
     this.shopCart$ = await this.shoppingCartService.getCart();
     this.shopCart$.subscribe(cart => {

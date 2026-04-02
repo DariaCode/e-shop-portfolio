@@ -28,21 +28,21 @@ describe('ShoppingCartComponent', () => {
 
   it('should initialize cart and cartCounter on ngOnInit', async () => {
     const mockItemsMap = {
-      '1': { item: { title: 'Item 1', imageUrl: 'image-url-1', price: 5, category: 'Category 1' }, quantity: 2, totalPrice: 10 },
-      '2': { item: { title: 'Item 2', imageUrl: 'image-url-2', price: 3, category: 'Category 2' }, quantity: 1, totalPrice: 3 }
+      1: { item: { title: 'Item 1', imageUrl: 'image-url-1', price: 5, category: 'Category 1' }, quantity: 2, totalPrice: 10 },
+      2: { item: { title: 'Item 2', imageUrl: 'image-url-2', price: 3, category: 'Category 2' }, quantity: 1, totalPrice: 3 }
     };
-  
+
     const mockCart: ShoppingCart = {
       items: [],
       itemsMap: mockItemsMap,
       totalItemsCount: 3,
       totalPrice: 13
     };
-  
+
     mockShoppingCartService.getCart.and.returnValue(Promise.resolve(of(mockCart)));
 
     await component.ngOnInit();
-  
+
     expect(mockShoppingCartService.getCart).toHaveBeenCalled();
     expect(component.cart).toEqual(mockCart);
     expect(component.cartCounter).toEqual(mockCart.totalItemsCount);

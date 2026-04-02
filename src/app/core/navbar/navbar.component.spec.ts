@@ -66,7 +66,7 @@ describe('NavbarComponent', () => {
     expect(appUserElement.nativeElement.textContent).toContain(appUser.name);
   });
 
-  it('should display the shopping cart item count', async() => { 
+  it('should display the shopping cart item count', async () => {
     spyOn(component, 'ngOnInit').and.callThrough(); // Spy on ngOnInit method
     component.ngOnInit(); // Manually trigger ngOnInit
     fixture.detectChanges(); // Trigger ngOnInit

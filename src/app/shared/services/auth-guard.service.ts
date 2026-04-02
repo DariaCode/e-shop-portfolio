@@ -9,13 +9,13 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 // https://angular.io/api/router/CanActivate
-// a CanActivate function that checks whether the current user has 
+// a CanActivate function that checks whether the current user has
 // permission to activate the requested route.
 export class AuthGuardService implements CanActivate {
 
   constructor(private router: Router, private auth: AuthService) { }
   // https://vsavkin.com/angular-router-understanding-router-state-7b5b95a12eab
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):any {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     return this.auth.user$.pipe(map(user => {
       if(user) {
         return true;

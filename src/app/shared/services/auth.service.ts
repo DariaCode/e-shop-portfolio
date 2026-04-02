@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   login() {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
 
     // Mock login: always logs in as an admin for development purposes
@@ -37,7 +37,7 @@ export class AuthService {
 
     localStorage.setItem('user', JSON.stringify(mockUser));
     this.userSubject.next(mockUser);
-    
+
     this.router.navigateByUrl(returnUrl);
   }
 

@@ -8,14 +8,13 @@ export class Order {
   item: any[];
 
   constructor(
-    public userId: string, 
-    public shipping: Shipping, 
+    public userId: string,
+    public shipping: Shipping,
     shopCart: ShoppingCart) {
 
       this. orderDate = new Date().getTime();
 
-      this.item = shopCart.items.map(i => {
-        return {
+      this.item = shopCart.items.map(i => ({
           item: {
             title: i.item.title,
             price: i.item.price,
@@ -23,7 +22,6 @@ export class Order {
           },
           quantity: i.quantity,
           totalPrice: i.totalPrice,
-        };
-      });
+        }));
   }
 }

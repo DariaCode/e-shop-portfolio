@@ -17,7 +17,7 @@ describe('CheckoutComponent', () => {
 
   beforeEach(async(() => {
     shoppingCartService = jasmine.createSpyObj('ShoppingCartService', ['getCart']);
-    
+
     TestBed.configureTestingModule({
       declarations: [ CheckoutComponent ],
       providers: [
@@ -45,5 +45,5 @@ describe('CheckoutComponent', () => {
     expect(shoppingCartService.getCart).toHaveBeenCalled();
     expect(component.cart).toEqual(mockShoppingCart);
   });
-  
+
 });

@@ -9,7 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminItemsComponent } from './admin-items/admin-items.component';
 import { AdminItemFormComponent } from './admin-item-form/admin-item-form.component';
-// My services: 
+// My services:
 import { AuthGuardService } from '../shared/services/auth-guard.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
@@ -26,24 +26,24 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
     SharedModule,
     RouterModule.forChild([
       {
-        path: 'admin/orders', 
-        component: AdminOrdersComponent, 
-        canActivate: [AuthGuardService, AdminAuthGuardService] 
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
       },
       {
-        path: 'admin/items', 
-        component: AdminItemsComponent, 
-        canActivate: [AuthGuardService, AdminAuthGuardService] 
+        path: 'admin/items',
+        component: AdminItemsComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
       },
       {
-        path: 'admin/items/new', 
-        component: AdminItemFormComponent, 
-        canActivate: [AuthGuardService, AdminAuthGuardService] 
+        path: 'admin/items/new',
+        component: AdminItemFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
       },
       {
-        path: 'admin/items/:id', 
-        component: AdminItemFormComponent, 
-        canActivate: [AuthGuardService, AdminAuthGuardService] 
+        path: 'admin/items/:id',
+        component: AdminItemFormComponent,
+        canActivate: [AuthGuardService, AdminAuthGuardService]
       }
     ])
   ],
