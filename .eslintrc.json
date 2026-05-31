@@ -21,7 +21,11 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:jsdoc/recommended"
       ],
-      "plugins": ["jsdoc", "import", "prefer-arrow"],
+      "plugins": [
+        "jsdoc",
+        "import",
+        "prefer-arrow"
+      ],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
