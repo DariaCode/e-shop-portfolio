@@ -1,55 +1,49 @@
 <h2>Admin: Manage Items</h2>
-<div>
-  <input
-    #query
-    (keyup)="filter(query.value)"
-    type="text"
-    class="form-control"
-    placeholder="Search"
-  />
+<div class="header-container">
+  <div class="search-box">
+    <input
+      #query
+      (keyup)="filter(query.value)"
+      type="text"
+      class="form-control"
+      placeholder="Search"
+    />
+  </div>
   <a routerLink="/admin/items/new" class="btn myBtn">New Product</a>
 </div>
-<data-table
-  [items]="entries"
-  [itemCount]="itemCount"
-  (reload)="reloadItems($event)"
->
-  <data-table-column
-    [property]="'title'"
-    [header]="'Title'"
-    [sortable]="true"
-    [resizable]="true"
-  >
-    <ng-template #dataTableCell let-item="item">
-      {{ item.title }}
-    </ng-template>
-  </data-table-column>
 
-  <data-table-column
-    [property]="'price'"
-    [header]="'Price'"
-    [sortable]="true"
-    [resizable]="true"
-  >
-    <ng-template #dataTableCell let-item="item">
-      {{ item.price | currency: "USD" }}
-    </ng-template>
-  </data-table-column>
+<div class="mat-elevation-z8 table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
 
-  <data-table-column
-    [property]="'category'"
-    [header]="'Category'"
-    [sortable]="false"
-    [resizable]="true"
-  >
-    <ng-template #dataTableCell let-item="item">
-      {{ item.category }}
-    </ng-template>
-  </data-table-column>
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <td mat-cell *matCellDef="let item"> {{item.title}} </td>
+    </ng-container>
 
-  <data-table-column [property]="'key'">
-    <ng-template #dataTableCell let-item="item">
-      <a [routerLink]="['/admin/items/', item.key]">Edit</a>
-    </ng-template>
-  </data-table-column>
-</data-table>
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+      <td mat-cell *matCellDef="let item"> {{item.price | currency:'USD'}} </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+      <td mat-cell *matCellDef="let item"> {{item.category}} </td>
+    </ng-container>
+
+    <!-- Edit Column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let item">
+        <a [routerLink]="['/admin/items/', item.key]">Edit</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of items"></mat-paginator>
+</div>

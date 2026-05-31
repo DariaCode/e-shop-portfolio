@@ -2,31 +2,57 @@
   color: #512715;
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  flex: 1;
+  margin-right: 20px;
+}
+
 .myBtn{
   color: #00000080;
   cursor: pointer;
-  font-size: 100%;
+  padding: 8px 16px;
   text-decoration: none;
   font-weight: 500;
-  background-color: rgb(255, 174, 0, 0.25);
+  background-color: rgba(255, 174, 0, 0.25);
+  border-radius: 4px;
+  white-space: nowrap;
+  
   &:hover {
     color: black;
     font-weight: 800;
     background-color: rgba(255, 174, 0, 0.5);
-    // text-shadow: 0px 0px 4px #FFB000;
   }
 }
 
 input{
-  margin: 12px 0;
   border-color: rgba(255, 174, 0, 0.5);
-  border-radius: 0%;
+  border-radius: 4px;
   &:hover, 
   &:active {
     border-color: #ffb000;
-    box-shadow: 0px 0px 2px #ffb000;;
+    box-shadow: 0px 0px 2px #ffb000;
   }
-}  
+}
+
+.table-container {
+  overflow: auto;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+}
 
 // remove custom blue border on click;
 .btn:focus,.btn:active {
@@ -35,7 +61,6 @@ input{
 }
 
 .form-control:focus{
-  border-color: #cccccc;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  border-color: #ffb000;
+  box-shadow: 0px 0px 2px #ffb000;
 }

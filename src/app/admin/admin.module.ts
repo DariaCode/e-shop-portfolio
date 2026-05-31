@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DataTableModule } from 'angular7-data-table';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 // My modules:
 import { SharedModule } from '../shared/shared.module';
 // My components:
@@ -22,7 +24,9 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
   imports: [
     CommonModule,
     FormsModule,
-    DataTableModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     SharedModule,
     RouterModule.forChild([
       {
