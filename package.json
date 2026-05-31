@@ -24,7 +24,6 @@
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
-    "font-awesome": "^4.7.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.15.1"
