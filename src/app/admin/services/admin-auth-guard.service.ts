@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // My services:
@@ -10,7 +10,7 @@ import { AuthService } from '../../shared/services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminAuthGuardService implements CanActivate {
+export class AdminAuthGuardService  {
 
   constructor(
     private auth: AuthService,

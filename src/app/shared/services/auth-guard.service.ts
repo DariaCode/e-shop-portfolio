@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
 // https://angular.io/api/router/CanActivate
 // a CanActivate function that checks whether the current user has
 // permission to activate the requested route.
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService  {
 
   constructor(private router: Router, private auth: AuthService) { }
   // https://vsavkin.com/angular-router-understanding-router-state-7b5b95a12eab
