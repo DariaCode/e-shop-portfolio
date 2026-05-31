@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CheckoutComponent } from './checkout.component';
 import { ShoppingCart } from '../../shared/models/shopping-cart';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
@@ -15,7 +15,7 @@ describe('CheckoutComponent', () => {
     itemsMap: {}
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     shoppingCartService = jasmine.createSpyObj('ShoppingCartService', ['getCart']);
 
     TestBed.configureTestingModule({
