@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FilterService } from '../../shared/services/filter.service';
 
 @Component({
-  selector: 'app-items-filter',
-  templateUrl: './items-filter.component.html',
-  styleUrls: ['./items-filter.component.scss']
+    selector: 'app-items-filter',
+    templateUrl: './items-filter.component.html',
+    styleUrls: ['./items-filter.component.scss'],
+    standalone: false
 })
 export class ItemsFilterComponent implements OnInit {
   categoriesFilter = []; // initialize to empty array

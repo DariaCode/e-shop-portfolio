@@ -7,9 +7,10 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 
 
 @Component({
-  selector: 'app-item-card',
-  templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.scss']
+    selector: 'app-item-card',
+    templateUrl: './item-card.component.html',
+    styleUrls: ['./item-card.component.scss'],
+    standalone: false
 })
 
 export class ItemCardComponent {

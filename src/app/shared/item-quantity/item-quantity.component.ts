@@ -4,9 +4,10 @@ import { ShoppingCart } from '../models/shopping-cart';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
-  selector: 'app-item-quantity',
-  templateUrl: './item-quantity.component.html',
-  styleUrls: ['./item-quantity.component.scss']
+    selector: 'app-item-quantity',
+    templateUrl: './item-quantity.component.html',
+    styleUrls: ['./item-quantity.component.scss'],
+    standalone: false
 })
 export class ItemQuantityComponent {
 

@@ -8,9 +8,10 @@ import { AuthService } from '../../shared/services/auth.service';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: false
 })
 export class NavbarComponent implements OnInit {
   // Navbar that automatically collapses at the lg (large) breakpoint.

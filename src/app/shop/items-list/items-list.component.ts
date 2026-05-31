@@ -11,9 +11,10 @@ import { ItemService } from '../../shared/services/item.service';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 
 @Component({
-  selector: 'app-items-list',
-  templateUrl: './items-list.component.html',
-  styleUrls: ['./items-list.component.scss']
+    selector: 'app-items-list',
+    templateUrl: './items-list.component.html',
+    styleUrls: ['./items-list.component.scss'],
+    standalone: false
 })
 // https://angular.io/guide/lifecycle-hooks
 export class ItemsListComponent implements OnInit, OnDestroy {

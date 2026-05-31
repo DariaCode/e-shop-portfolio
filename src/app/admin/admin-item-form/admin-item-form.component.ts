@@ -14,9 +14,10 @@ interface Item {
   imageUrl: string;
 }
 @Component({
-  selector: 'app-admin-item-form',
-  templateUrl: './admin-item-form.component.html',
-  styleUrls: ['./admin-item-form.component.scss']
+    selector: 'app-admin-item-form',
+    templateUrl: './admin-item-form.component.html',
+    styleUrls: ['./admin-item-form.component.scss'],
+    standalone: false
 })
 export class AdminItemFormComponent implements OnInit {
   categories$;

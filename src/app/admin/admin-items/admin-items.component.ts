@@ -7,9 +7,10 @@ import { Item } from '../../shared/models/item';
 import { ItemService } from '../../shared/services/item.service';
 
 @Component({
-  selector: 'app-admin-items',
-  templateUrl: './admin-items.component.html',
-  styleUrls: ['./admin-items.component.scss']
+    selector: 'app-admin-items',
+    templateUrl: './admin-items.component.html',
+    styleUrls: ['./admin-items.component.scss'],
+    standalone: false
 })
 export class AdminItemsComponent implements OnInit, OnDestroy {
   subscription: Subscription;

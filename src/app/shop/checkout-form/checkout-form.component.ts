@@ -9,9 +9,10 @@ import { Order } from '../../shared/models/order';
 import { Shipping } from '../../shared/models/shipping';
 
 @Component({
-  selector: 'app-checkout-form',
-  templateUrl: './checkout-form.component.html',
-  styleUrls: ['./checkout-form.component.scss']
+    selector: 'app-checkout-form',
+    templateUrl: './checkout-form.component.html',
+    styleUrls: ['./checkout-form.component.scss'],
+    standalone: false
 })
 export class CheckoutFormComponent implements OnInit, OnDestroy {
 
